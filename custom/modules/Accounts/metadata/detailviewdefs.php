@@ -1,0 +1,232 @@
+<?php
+$viewdefs ['Accounts'] = 
+array (
+  'DetailView' => 
+  array (
+    'templateMeta' => 
+    array (
+      'form' => 
+      array (
+        'buttons' => 
+        array (
+          0 => 'EDIT',
+          1 => 'DUPLICATE',
+          2 => 'DELETE',
+          3 => 'FIND_DUPLICATES',
+        ),
+      ),
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '15',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '15',
+          'field' => '30',
+        ),
+      ),
+      'includes' => 
+      array (
+        0 => 
+        array (
+          'file' => 'modules/Accounts/Account.js',
+        ),
+      ),
+      'useTabs' => false,
+    ),
+    'panels' => 
+    array (
+      'LBL_ACCOUNT_INFORMATION' => 
+      array (
+        0 => 
+        array (
+          0 => 'date_entered',
+          1 => 'created_by_name',
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'name',
+            'label' => 'LBL_NAME',
+          ),
+          1 => 
+          array (
+            'name' => 'accounts_tax_status_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ACCOUNTS_TAX_STATUS',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'accounts_company_product_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ACCOUNTS_COMPANY_PRODUCT',
+          ),
+          1 => 
+          array (
+            'name' => 'accounts_repeat_client_c',
+            'label' => 'LBL_ACCOUNTS_REPEAT_CLIENT',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'accounts_account_number_c',
+            'label' => 'LBL_ACCOUNTS_ACCOUNT_NUMBER',
+          ),
+          1 => 
+          array (
+            'name' => 'assigned_user_name',
+            'label' => 'LBL_ASSIGNED_TO',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'account_owner_c',
+            'label' => 'LBL_ACCOUNT_OWNER',
+          ),
+          1 => 
+          array (
+            'name' => 'status',
+            'label' => 'LBL_STATUS',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'accounts_anniversary_date_c',
+            'label' => 'LBL_ACCOUNTS_ANNIVERSARY_DATE',
+          ),
+          1 => 
+          array (
+            'name' => 'future_assets',
+            'label' => 'LBL_FUTURE_ASSETS',
+          ),
+        ),
+        6 => 
+        array (
+          0 => 
+          array (
+            'name' => 'lead_name',
+            'label' => 'LBL_LEAD_NAME',
+          ),
+          1 => '',
+        ),
+        7 => 
+        array (
+          0 => 
+          array (
+            'name' => 'description',
+            'label' => 'LBL_DESCRIPTION',
+          ),
+          1 => '',
+        ),
+      ),
+      'LBL_ACCOUNT_VALUE' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'accounts_total_premium_c',
+            'label' => 'LBL_ACCOUNTS_TOTAL_PREMIUM',
+          ),
+          1 => 
+          array (
+            'name' => 'bonus_percentage',
+            'label' => 'LBL_BONUS_PERCENTAGE',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'accounts_projected_amount_c',
+            'label' => 'LBL_ACCOUNTS_PROJECTED_AMOUNT',
+          ),
+          1 => 
+          array (
+            'name' => 'adjustment',
+            'label' => 'LBL_ADJUSTMENT',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'total_contributions',
+            'label' => 'LBL_TOTAL_CONTRIBUTIONS',
+          ),
+          1 => 
+          array (
+            'name' => 'total_withdrawals',
+            'label' => 'LBL_TOTAL_WITHDRAWALS',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'current_value',
+            'label' => 'LBL_CURRENT_VALUE',
+          ),
+        ),
+      ),
+      'LBL_OTHER_INFORMATION' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'accounts_application_mailed__c',
+            'label' => 'LBL_ACCOUNTS_APPLICATION_MAILED_',
+          ),
+          1 => 
+          array (
+            'name' => 'accounts_tracking_number_c',
+            'label' => 'LBL_ACCOUNTS_TRACKING_NUMBER',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'accounts_application_receive_c',
+            'label' => 'LBL_ACCOUNTS_APPLICATION_RECEIVE',
+          ),
+          1 => 
+          array (
+            'name' => 'account_days_left_to_anniv',
+            'label' => 'LBL_ACCOUNT_DAYS_LEFT_TO_ANNIV',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'accounts_other_description_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ACCOUNTS_OTHER_DESCRIPTION',
+          ),
+          1 => 
+		  array (
+            'name' => 'days_left_to_call',
+            'label' => 'LBL_ACCOUNTS_DAYS_LEFT_TO_CALL',
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+?>
