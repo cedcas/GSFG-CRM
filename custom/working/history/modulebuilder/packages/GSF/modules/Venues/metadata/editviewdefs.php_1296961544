@@ -1,0 +1,168 @@
+<?php
+$module_name = 'GSF_Venues';
+$_object_name = 'gsf_venues';
+$viewdefs [$module_name] = 
+array (
+  'EditView' => 
+  array (
+    'templateMeta' => 
+    array (
+      'form' => 
+      array (
+        'buttons' => 
+        array (
+          0 => 'SAVE',
+          1 => 'CANCEL',
+        ),
+      ),
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'includes' => 
+      array (
+        0 => 
+        array (
+          'file' => 'modules/Accounts/Account.js',
+        ),
+      ),
+      'useTabs' => false,
+    ),
+    'panels' => 
+    array (
+      'lbl_account_information' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'name',
+            'comment' => 'Name of the Company',
+            'label' => 'LBL_NAME',
+          ),
+          1 => 
+          array (
+            'name' => 'phone_office',
+            'comment' => 'The office phone number',
+            'label' => 'LBL_PHONE_OFFICE',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'website',
+            'comment' => 'URL of website for the company',
+            'label' => 'LBL_WEBSITE',
+          ),
+          1 => 
+          array (
+            'name' => 'phone_fax',
+            'comment' => 'The fax phone number of this company',
+            'label' => 'LBL_FAX',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'gsf_venues_type',
+            'comment' => 'The Company is of this type',
+            'studio' => 'visible',
+            'label' => 'LBL_TYPE',
+          ),
+          1 => '',
+        ),
+      ),
+      'lbl_address_information' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'billing_address_street',
+            'hideLabel' => true,
+            'type' => 'address',
+            'displayParams' => 
+            array (
+              'key' => 'billing',
+              'rows' => 2,
+              'cols' => 30,
+              'maxlength' => 150,
+            ),
+          ),
+          1 => '',
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'billing_address_city',
+            'comment' => 'The city used for billing address',
+            'label' => 'LBL_BILLING_ADDRESS_CITY',
+          ),
+          1 => '',
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'billing_address_state',
+            'comment' => 'The state used for billing address',
+            'label' => 'LBL_BILLING_ADDRESS_STATE',
+          ),
+          1 => '',
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'billing_address_postalcode',
+            'comment' => 'The postal code used for billing address',
+            'label' => 'LBL_BILLING_ADDRESS_POSTALCODE',
+          ),
+          1 => '',
+        ),
+      ),
+      'lbl_email_addresses' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'email1',
+            'studio' => 
+            array (
+              'editField' => true,
+            ),
+            'label' => 'LBL_EMAIL',
+          ),
+          1 => '',
+        ),
+      ),
+      'lbl_description_information' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'description',
+            'comment' => 'Full text of the note',
+            'label' => 'LBL_DESCRIPTION',
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+?>

@@ -1,0 +1,87 @@
+<?php
+$module_name = 'GSF_SeminarDetails';
+$viewdefs [$module_name] = 
+array (
+  'QuickCreate' => 
+  array (
+    'templateMeta' => 
+    array (
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'useTabs' => false,
+    ),
+    'panels' => 
+    array (
+      'default' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'details_venue',
+            'studio' => 'visible',
+            'label' => 'LBL_DETAILS_VENUE',
+          ),
+          1 => '',
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'details_venue_address1',
+            'label' => 'LBL_DETAILS_VENUE_ADDRESS1',
+          ),
+          1 => 
+          array (
+            'name' => 'details_venue_city',
+            'label' => 'LBL_DETAILS_VENUE_CITY',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'details_venue_state',
+            'label' => 'LBL_DETAILS_VENUE_STATE',
+          ),
+          1 => 
+          array (
+            'name' => 'details_venue_postalcode',
+            'label' => 'LBL_DETAILS_VENUE_POSTALCODE',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'details_from_date',
+            'label' => 'LBL_DETAILS_FROM_DATE',
+          ),
+          1 => 
+          array (
+            'name' => 'details_from_time',
+            'studio' => 'visible',
+            'label' => 'LBL_DETAILS_FROM_TIME',
+          ),
+        ),
+        4 => 
+        array (
+          0 => '',
+        ),
+      ),
+    ),
+  ),
+);
+?>

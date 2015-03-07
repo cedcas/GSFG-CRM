@@ -1,0 +1,43 @@
+<?php
+$module_name = 'GSF_SeminarDetails';
+$listViewDefs [$module_name] = 
+array (
+  'NAME' => 
+  array (
+    'width' => '20%',
+    'label' => 'LBL_NAME',
+    'default' => true,
+    'link' => true,
+  ),
+  'DETAILS_FROM_DATETIME' => 
+  array (
+    'type' => 'datetimecombo',
+    'label' => 'LBL_DETAILS_FROM_DATETIME',
+    'width' => '20%',
+    'default' => true,
+  ),
+  'DETAILS_TOTAL_AMOUNT' => 
+  array (
+    'type' => 'currency',
+    'label' => 'LBL_DETAILS_TOTAL_AMOUNT',
+    'currency_format' => true,
+    'width' => '20%',
+    'default' => true,
+  ),
+  'DATE_ENTERED' => 
+  array (
+    'type' => 'datetime',
+    'label' => 'LBL_DATE_ENTERED',
+    'width' => '20%',
+    'default' => true,
+  ),
+  'CREATED_BY_NAME' => 
+  array (
+    'type' => 'relate',
+    'link' => 'created_by_link',
+    'label' => 'LBL_CREATED',
+    'width' => '20%',
+    'default' => true,
+  ),
+);
+?>

@@ -1,0 +1,168 @@
+<?php
+$module_name = 'GSF_Venues';
+$_object_name = 'gsf_venues';
+$viewdefs [$module_name] = 
+array (
+  'DetailView' => 
+  array (
+    'templateMeta' => 
+    array (
+      'form' => 
+      array (
+        'buttons' => 
+        array (
+          0 => 'EDIT',
+          1 => 'DUPLICATE',
+          2 => 'DELETE',
+          3 => 'FIND_DUPLICATES',
+        ),
+      ),
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'useTabs' => false,
+    ),
+    'panels' => 
+    array (
+      'default' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'date_entered',
+            'customCode' => '{$fields.date_entered.value} {$APP.LBL_BY} {$fields.created_by_name.value}',
+          ),
+          1 => 
+          array (
+            'name' => 'created_by_name',
+            'label' => 'LBL_CREATED',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'venue_logo',
+            'studio' => 'visible',
+            'label' => 'LBL_VENUE_LOGO',
+          ),
+          1 => 
+          array (
+            'name' => 'name',
+            'comment' => 'Name of the Company',
+            'label' => 'LBL_NAME',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'phone_office',
+            'comment' => 'The office phone number',
+            'label' => 'LBL_PHONE_OFFICE',
+          ),
+          1 => 
+          array (
+            'name' => 'phone_fax',
+            'comment' => 'The fax phone number of this company',
+            'label' => 'LBL_FAX',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'website',
+            'type' => 'link',
+          ),
+          1 => 
+          array (
+            'name' => 'gsf_venues_type',
+            'comment' => 'The Company is of this type',
+            'studio' => 'visible',
+            'label' => 'LBL_TYPE',
+          ),
+        ),
+        4 => 
+        array (
+          0 => '',
+        ),
+      ),
+      'lbl_detailview_panel1' => 
+      array (
+        0 => 
+        array (
+          0 => '',
+          1 => 
+          array (
+            'name' => 'billing_address_city',
+            'comment' => 'The city used for billing address',
+            'label' => 'LBL_BILLING_ADDRESS_CITY',
+          ),
+        ),
+        1 => 
+        array (
+          0 => '',
+          1 => 
+          array (
+            'name' => 'billing_address_state',
+            'comment' => 'The state used for billing address',
+            'label' => 'LBL_BILLING_ADDRESS_STATE',
+          ),
+        ),
+        2 => 
+        array (
+          0 => '',
+          1 => 
+          array (
+            'name' => 'billing_address_postalcode',
+            'comment' => 'The postal code used for billing address',
+            'label' => 'LBL_BILLING_ADDRESS_POSTALCODE',
+          ),
+        ),
+        3 => 
+        array (
+          0 => '',
+        ),
+      ),
+      'lbl_detailview_panel2' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'email_addresses',
+            'label' => 'LBL_EMAIL_ADDRESSES',
+          ),
+          1 => '',
+        ),
+      ),
+      'lbl_detailview_panel3' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'description',
+            'comment' => 'Full text of the note',
+            'label' => 'LBL_DESCRIPTION',
+          ),
+          1 => '',
+        ),
+      ),
+    ),
+  ),
+);
+?>

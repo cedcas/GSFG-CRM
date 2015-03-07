@@ -1,0 +1,13 @@
+<?php 
+ //WARNING: The contents of this file are auto-generated
+
+
+//THIS FILE IS AUTO GENERATED, DO NOT MODIFY
+$mod_strings['LBL_ACCOUNTS_GSF_WITHDRAWALS_FROM_ACCOUNTS_TITLE'] = 'Accounts';
+
+
+//THIS FILE IS AUTO GENERATED, DO NOT MODIFY
+$mod_strings['LBL_ACCOUNTS_GSF_WITHDRAWALS_FROM_ACCOUNTS_TITLE'] = 'Accounts';
+$mod_strings['LBL_GSF_WITHDRAWALS_DOCUMENTS_FROM_DOCUMENTS_TITLE'] = 'Documents';
+
+?>
