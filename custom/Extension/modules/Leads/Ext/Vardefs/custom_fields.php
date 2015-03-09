@@ -48,6 +48,7 @@ $dictionary["Lead"]["fields"]["initial_contact"] = array (
     'type' => 'date',
     'reportable' => true,
     'importable' => true,
+    'audited' => true,
 );
 
 // 2/3/2014 - CPC 
