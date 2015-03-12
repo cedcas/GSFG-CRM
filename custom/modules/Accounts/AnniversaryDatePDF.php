@@ -21,6 +21,12 @@ Date: 20110808
  * - Terri Weston's signature (image)
  * - Removed the footer / disclosure (due to letterhead printing)
  * - Deletion of company address and contact information
+ *
+ * 3/9/2015 CPC
+ * Modified PDF based on Danielle's request;
+ * - Put back Terri's title
+ * - Made the Media Logo much lower
+ * - Added TIME in the Anniversary PDF filename, i.e. "Anniversarry PDF 20150309124810.pdf", from just "Anniversarry PDF 20150309.pdf"
  */
 
 require_once('include/pdf/class.ezpdf.php');
@@ -72,7 +78,7 @@ class AnniversaryDatePDF {
                 "As a valued client, we would like to let you know that it is time for your Annual Client Review.  It is important to set aside at least one hour each year to reevaluate your financial goals and ensure that your retirement needs are being met.\n";
         $this->pdf->ezText($text, 11, array('justification'=>'left'));
 
-        $text = "This appointment is complimentary and will be used to review your accountÕs progress over the past year and to assure that your portfolio is properly positioned to maximize your investment opportunities.  The time will also be used to discuss any questions or concerns that you may have.  Please bring all current statements from your financial portfolio(s) with you for review.\n";
+        $text = "This appointment is complimentary and will be used to review your account's progress over the past year and to assure that your portfolio is properly positioned to maximize your investment opportunities.  The time will also be used to discuss any questions or concerns that you may have.  Please bring all current statements from your financial portfolio(s) with you for review.\n";
         $this->pdf->ezText($text, 11, array('justification'=>'left'));
 
         $text = "Please allow us to fulfill our commitment to serve you; call (630) 620-9300 to choose a time for your Annual Client Review. We appreciate you and the continued trust you place in our hands.  We look forward to seeing you soon.\n";
@@ -86,7 +92,7 @@ class AnniversaryDatePDF {
 	$this->pdf->ezImage('custom/logos/terriweston_sig.png', 0, 140, "none", "left");
 	
 	// Extra spaces
-        $signature = "\n\n\n\n\n\n\n\n";
+        $signature = "Client Relations Coordinator\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         $this->pdf->ezText($signature, 11, array('justification'=>'left', 'leading'=>'5'));
 
 	// Media logos
@@ -97,7 +103,7 @@ class AnniversaryDatePDF {
     }
 
     function createDocumentRecord() {
-        $today = date("Ymd");
+        $today = date("Ymdhis");
         $filename = "Anniversary Date PDF " . $today . ".pdf";
         $document = new Document();
         $document->document_name = $filename;
