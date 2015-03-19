@@ -16,6 +16,9 @@
 * number of records that needs to be updated and [b] it eventually takes all records down to '0' and not leave them
 * straggling with a positive number;
 *
+* 3/19/2015 - CPC
+* Moved updateSeminarDaysLeft() and updateAnniversaryDaysLeft() outside of this page due to issues encountered such as not getting executed;
+*
 */
 				var_dump($job_strings);
 				$job_strings[]='runProcessManager';
@@ -40,7 +43,7 @@ $job_strings['107'] = 'updateBirthdayDaysLeft';
 $job_strings['108'] = 'updateSpouseBirthdayDaysLeft';
 $job_strings['109'] = 'updateDaysSinceInitialContact';
 
-
+/*
 function updateSeminarDaysLeft() {
     	global $sugar_config;
 	$GLOBALS['log']->info('----->Scheduler fired updateSeminarDaysLeft()');
@@ -67,12 +70,13 @@ function updateSeminarDaysLeft() {
 				      	(`seminar_date_c` is not null or `seminar_date_c` <>'')";
 													 				 
 		$db->query($update_query, true);
-        */
+        	*/
     
     /* customization by JOED@ASI 20110509
      * updating process to use the $bean->save() inorder to trigger the Save Hook
      * for this module, created by the Process Manager
      */
+/*
     global $sugar_config;
     ini_set("max_execution_time", "3600");
     $log_level = $sugar_config['logger']['level'];
@@ -113,8 +117,17 @@ function updateSeminarDaysLeft() {
     
     return true;
 }
+*/
 
+function updateSeminarDaysLeft() {
+    if (file_exists('custom/modules/Schedulers/updateSeminarDaysLeft.php')) {
+        require('custom/modules/Schedulers/updateSeminarDaysLeft.php');
+    }
+    
+    return true;
+}
 
+/*
 function updateAnniversaryDaysLeft() {
     
     set_time_limit(0);
@@ -173,6 +186,15 @@ function updateAnniversaryDaysLeft() {
     //end while loop
     
     $sugar_config['logger']['level'] = $log_level;
+    
+    return true;
+}
+*/
+
+function updateAnniversaryDaysLeft() {
+    if (file_exists('custom/modules/Schedulers/updateAnniversaryDaysLeft.php')) {
+        require('custom/modules/Schedulers/updateAnniversaryDaysLeft.php');
+    }
     
     return true;
 }
