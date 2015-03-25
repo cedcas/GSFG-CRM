@@ -1,5 +1,9 @@
 <?php
-
+/*
+3/1/2015 - 	Cedric P. Castillo
+		The scheduler job associated with this has been failing and would only update a handful of accounts;
+		Modified to update the lead using SQL update instead of through the model (not working);  
+*/
 
     
     set_time_limit(0);
@@ -27,15 +31,16 @@
             (l.birthdate <> '' OR l.birthdate != NULL) AND
             l.deleted = 0
         ORDER BY
-            date_format(date(l.birthdate), '%m-%d') ASC
+            date_format(date(l.birthdate), '%m-%d') DESC
         ";
     
     $result_leads = $db->query($query_leads, true);
-    
+    $i=0;
     while ($row = $db->fetchByAssoc($result_leads)) {
-        $lead = new Lead();
-        $lead->retrieve($row['id']);
-        
+        //$lead = new Lead();
+        //$lead->retrieve($row['id']);
+        $i++;
+        $leadid = $row['id'];
         $bday = $row['bday'];
             
         $daysleft = round((strtotime(date("Y-m-d", strtotime($bday))) - strtotime(date("Y-m-d"))) / (60*60*24),0);
@@ -46,13 +51,25 @@
             $daysleft = round((strtotime(date("Y-m-d", strtotime($bday))) - strtotime(date("Y-m-d"))) / (60*60*24),0);
 
             //echo "<br><pre>";
-            //print_r($daysleft);
+            //print_r($bday." - ".$daysleft);
             //echo "<br></pre>";
         }
         
-        $lead->lead_days_left_to_birthday = $daysleft;
-        $lead->save();
-        unset($lead);
+        //$lead->lead_days_left_to_birthday = $daysleft;
+        //$lead->save();
+        //unset($lead);
+        
+        $update_leads = "
+        UPDATE leads
+        SET lead_days_left_to_birthday = '".$daysleft."', date_modified = NOW()
+        WHERE
+            id = '".$leadid."'
+        ";
+        $db->query($update_leads, true);
+        //echo "<br><pre>";
+        //print_r($i."-".$update_leads."<br>");
+        //print_r($bday." - ".$daysleft);
+        //echo "<br></pre>";
     }
     //end while loop
     
