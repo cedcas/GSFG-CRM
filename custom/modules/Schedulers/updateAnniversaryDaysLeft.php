@@ -4,9 +4,12 @@
 * 3/19/2015 - CPC
 * created this function as its own page due to issues encountered such as not getting executed;
 *
+* 3/31/2015 - CPC
+* Modified to update the accounts using SQL update instead of through the model (not working or stopping); 
 *
 */
 
+/*
 var_dump($job_strings);
 $job_strings[]='runProcessManager';
 var_dump($job_strings);
@@ -16,7 +19,7 @@ function runProcessManager() {
 	$processManager->processManagerMain();
 	return true;
 } 
-
+*/
     set_time_limit(0);
     ini_set("max_execution_time", "3600");
     ini_set("memory_limit","1024M");
@@ -56,6 +59,7 @@ function runProcessManager() {
         $account->retrieve($row['id']);
         
         $anniv = $row['anniv'];
+        $account_id = $row['id'];
             
         $daysleft = ROUND((strtotime(date("Y-m-d", strtotime($anniv))) - strtotime(date("Y-m-d"))) / (60*60*24));
         //print_r("Anniv: ".$anniv." DaysLeft: ".$daysleft);
@@ -66,8 +70,16 @@ function runProcessManager() {
             
         }
         
-        $account->account_days_left_to_anniv = $daysleft;
-        $account->save();
+        $query_update = "
+        	UPDATE accounts
+        	SET 	account_days_left_to_anniv = ".$daysleft.",
+        		date_modified = NOW()
+        	WHERE id = '".$account_id."'
+        ";
+        $db->query($query_update, true);
+        
+        //$account->account_days_left_to_anniv = $daysleft;
+        //$account->save();
         unset($account);
     }
     //end while loop
