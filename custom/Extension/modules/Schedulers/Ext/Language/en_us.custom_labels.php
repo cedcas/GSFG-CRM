@@ -10,4 +10,6 @@ $mod_strings['LBL_UPDATEBIRTHDAYDAYSLEFT'] = 'Update Birthday Days Left';
 $mod_strings['LBL_UPDATECLIENTCALLDAYSLEFT'] = 'Update Client Call Days Left';
 $mod_strings['LBL_UPDATESPOUSEBIRTHDAYDAYSLEFT'] = 'Update Spouse Birthday Days Left';
 $mod_strings['LBL_UPDATEDAYSSINCEINITIALCONTACT'] = 'Update Days Since Initial Contact';
+$mod_strings['LBL_CREATEANNIVERSARYPDFANDTASK'] = 'Create Anniversary PDF and Task';
+
 ?>
