@@ -7,15 +7,15 @@
 *
 */
 
-var_dump($job_strings);
-$job_strings[]='runProcessManager';
-var_dump($job_strings);
-function runProcessManager() {
-	require_once('modules/PM_ProcessManager/ProcessManagerEngine.php');
-	$processManager = new ProcessManagerEngine();
-	$processManager->processManagerMain();
-	return true;
-} 
+//var_dump($job_strings);
+//$job_strings[]='runProcessManager';
+//var_dump($job_strings);
+//function runProcessManager() {
+	//require_once('modules/PM_ProcessManager/ProcessManagerEngine.php');
+	//$processManager = new ProcessManagerEngine();
+	//$processManager->processManagerMain();
+	//return true;
+//} 
 
     	global $sugar_config;
 	$GLOBALS['log']->info('----->Scheduler fired updateSeminarDaysLeft()');
@@ -30,7 +30,7 @@ function runProcessManager() {
 	//	const CUSTOM_TABLE = "leads_cstm"; 		// Custom table where the custom fields are located							
 	
 		//$db =  DBManagerFactory::getInstance();					
-		$db = DBManagerFactory::getInstance();															
+		$db=DBManagerFactory::getInstance();															
 		// Update the record that was just saved								
 		// $update_query = "UPDATE ".self::CUSTOM_TABLE." SET ".self::CUSTOM_FIELD1." = '$new_code'								
 		// 				 WHERE id = '{$bean->id}' AND (".self::CUSTOM_FIELD1." = '' or ".self::CUSTOM_FIELD1." IS NULL)";				
@@ -70,18 +70,26 @@ function runProcessManager() {
             STR_TO_DATE(lc.seminar_date_c, '%m/%d/%Y') > CURDATE() AND
             STR_TO_DATE(lc.seminar_date_c, '%m/%d/%Y') <> '0000-00-00' AND
             (lc.seminar_date_c IS NOT NULL OR lc.seminar_date_c <> '') AND 
-            DATEDIFF(STR_TO_DATE(lc.seminar_date_c, '%m/%d/%Y'), CURDATE()) IN ('1','2','3','4','5')
+            DATEDIFF(STR_TO_DATE(lc.seminar_date_c, '%m/%d/%Y'), CURDATE()) IN ('1','2','3','4','5','6','7','8','9','10')
     ";
     
     $result_leads = $db->query($query_leads, true);
     
     while ($row = $db->fetchByAssoc($result_leads)) {
-        $lead = new Lead();
-        $lead->retrieve($row['id']);
-        $lead->seminar_days_left_c = $row['daysleft'];
+        //$lead = new Lead();
+        //$lead->retrieve($row['id']);
+        //$lead->seminar_days_left_c = $row['daysleft'];
         //$lead->seminar_days_left_c = '5';
-        $lead->save();
-        unset($lead);
+        //$lead->save();
+        //unset($lead);
+        $lead_id=$row['id'];
+        $query_leads = "
+	        UPDATE leads l LEFT JOIN leads_cstm lc
+        		ON l.id = lc.id_c
+        	SET lc.seminar_days_left_c='".$row['daysleft']."', l.date_modified=NOW()
+        	WHERE l.id='".$lead_id."'
+    			";
+        
     }
     
     $sugar_config['logger']['level'] = $log_level;

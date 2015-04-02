@@ -1,8 +1,13 @@
 <?php
 /*************************************
 Script to generate Seminar Confirmation PDF
-Autor: Joed@ASI
+Author: Joed@ASI
 Date: 20110429
+
+4/2/2015 - CPC
+Modified based on Danielle's new requirements;
+Removed both header and footer so their company letterhead may be used;
+Modified the PDF filename to contain a timestamp;
 *************************************/
 
 require_once('include/pdf/class.ezpdf.php');
@@ -41,88 +46,65 @@ class SeminarConfirmationPDF {
         
         $this->pdf->selectFont('././././include/fonts/Helvetica.afm');
         
-        //$this->pdf->ezImage('custom/modules/Leads/goldstonefinancialgroup_for_PDF.JPG', 0, 250, "none", "center");
-        $this->pdf->ezImage('custom/modules/Leads/goldstone_nighttime.jpg', 0, 550, "none", "left");
-        
-        
+        $this->pdf->ez['leftMargin'] = 30;
+        // Header
         $today = date("F j, Y");
-        $header = "$today\n\n" .
+        $header = "\n\n\n\n\n\n\n\n\n\n$today\n\n" .
             "{$this->lead->first_name} {$this->lead->last_name}\n" .
             "{$this->lead->primary_address_street}\n" .
             "{$this->lead->primary_address_city} {$this->lead->primary_address_state} {$this->lead->primary_address_postalcode}\n\n";
-        
-        
         $header .= "\nDear {$this->lead->first_name} {$this->lead->last_name},\n";
-        
-        $this->pdf->ezText($header, 9, array('justification'=>'left'));
+        $this->pdf->ezText($header, 11, array('justification'=>'left'));
 
+	// 1st Paragraph
         $eventdate = date('F j, Y', strtotime($this->lead->seminar_date_c));
         $eventday = date('l', strtotime($eventdate));
-        $text = "Thank you for your interest in attending ".$this->lead->seminar_title.".  We look forward to meeting you and your guest(s) on {$eventday}, {$eventdate} at:\n\n";
+        $text = "Thank you for your interest in attending ".$this->lead->seminar_title.".  We look forward to meeting you and your guest(s) on {$eventday}, {$eventdate} at:\n\n\n";
+        $this->pdf->ezText($text, 11, array('justification'=>'left'));
         
-        $this->pdf->ezText($text, 9, array('justification'=>'left'));
-        
-        //$this->pdf->ez['leftMargin'] = -3;
-        //$this->pdf->ezImage('custom/logos/' . $this->lead->venue_logo_filename, 0, 120, "none", "center");
-        //$this->pdf->ez['leftMargin'] = 30;
-        
-        $this->pdf->ezText("<b>" . $this->lead->seminar_venue_name_c . "</b>", 13, array('justification'=>'center'));
+	// Venue Information
+	$this->pdf->ez['leftMargin'] = 30;
+        $this->pdf->ez['leftMargin'] = -2;
+        $this->pdf->ezImage('custom/logos/' . $this->lead->venue_logo_filename, 0, 120, "none", "center");
+        $this->pdf->ez['leftMargin'] = 70;
+        $this->pdf->ezText("<b>".trim($this->lead->seminar_venue_name_c)."<b>", 13, array('justification'=>'center'));
+        //$this->pdf->ezText("<b>Seminar Venue Here<b>", 13, array('justification'=>'center'));
+        $this->pdf->ez['leftMargin'] = 30;
         $this->pdf->ezText($this->lead->seminar_address_c, 10, array('justification'=>'center'));
         $address2 = $this->lead->seminar_city_c . ", " . $this->lead->seminar_state_c . " " . $this->lead->seminar_postalcode_c . "\n";
-        $this->pdf->ezText($address2, 9, array('justification'=>'center'));
+        $this->pdf->ezText($address2, 11, array('justification'=>'center'));
 
-        $text = "Please plan to arrive by ".$this->lead->before_meeting_start." to enjoy appetizers before the start of the program. Seating is on a first come, first serve basis so parties of more than 2 are encouraged to arrive early to sit together. There is no admittance to the program after ".$this->lead->after_meeting_start.", please allow time for traffic delays.\n";
+	$this->pdf->ez['leftMargin'] = 30;
+	// 2nd Paragraph
+        $text = "Please plan to arrive by ".$this->lead->before_meeting_start." to enjoy the first course before the start of the program. Seating is on a first come, first serve basis so parties of more than 2 are encouraged to arrive early to sit together. There is no admittance to the program after ".$this->lead->after_meeting_start.", please allow time for traffic delays.\n";
+        $this->pdf->ezText($text, 11, array('justification'=>'left'));
 
-        $this->pdf->ezText($text, 9, array('justification'=>'left'));
-
-        $text = "This is a program that you don't want to miss, however, if there are changes to your reservation please be sure to call the reservation line at 800-770-3718 so that we may notify the restaurant of a change in our attendance.\n";
-
-        $this->pdf->ezText($text, 9, array('justification'=>'left'));
-
-
+	// 3rd Paragraph
+        $text = "This is a program that you don't want to miss, however, if there are changes to your reservation please be sure to call our office at 630-620-9300 so that we may notify the restaurant of a change in our attendance.\n";
+        $this->pdf->ezText($text, 11, array('justification'=>'left'));
+	
+	// Closing
         $text = "\nSee you soon,\n\n";
-        $this->pdf->ezText($text, 9, array('justification'=>'left'));
+        $this->pdf->ezText($text, 11, array('justification'=>'left'));
 
-        //$signature = "Rachel Gilmer\n";
-        $this->pdf->ezText($signature, 9, array('justification'=>'left', 'leading'=>'5'));
+	// Signature
+	$this->pdf->ezImage('custom/logos/daniellecesar_sig.png', 0, 140, "none", "left");
+        $name = "Danielle Cesar\n\n";
+        $this->pdf->ezText($name, 11, array('justification'=>'left', 'leading'=>'5'));
+        $title = "Marketing Coordinator\n\n\n\n\n\n\n\n\n\n\n";
+        $this->pdf->ezText($title, 11, array('justification'=>'left', 'leading'=>'5'));
 
-        $signature = "Rachel Gilmer\n" .
-        	     "Director of Operations\n" .
-                     "GoldStone Financial Group\n" .
-                     "One Lincoln Centre\n" .
-                     "18W140 Butterfield Rd., 15th floor\n" .
-                     "Oakbrook Terrace, IL 60181\n" .
-                     "Ph:(630) 620-9300\n" .
-                     "Fax:(630)786-3357\n\n\n";
-                   
-        $this->pdf->ezText($signature, 9, array('justification'=>'left'));
+        // Media logos
+        $this->pdf->ez['leftMargin'] = 0;
+        $this->pdf->ezImage('custom/logos/media_logos.jpg', 0, 500, "none", "center");
         
-        $this->pdf->ezImage('custom/logos/PDF_footer.jpg', 0, 550, "none", "left");
-        
-        $text = "\n** Don't forget to bring your calendar **";
-
-        $this->pdf->ezText($text, 9, array('justification'=>'center'));
-
-        $footer = "\nOne Lincoln Centre <b>.</b> 18W140 Butterfield Rd <b>.</b> 14th Floor Suite 1490<b>.</b> Oakbrook Terrace, IL 60181\n";
-
-        $this->pdf->ezText($footer, 9, array('justification'=>'center'));
-        
-       $disclaimer= "Securities offered through Center Street Securities, Inc.(CSS), a registered Broker-Dealer & member FINRA & SIPC. " .
-        	     "Investment Advisory Services offered through Brookstone Capital Management LLC (BCM), an SEC Registered Investment Advisor. " .
-        	     "BCM is independent of CSS. GoldStone Financial Group in independent of CSS & BCM.";
-
-        $this->pdf->ezText($disclaimer, 7, array('justification'=>'center'));
-        
-        //create the pdf and stream it to the page
-        //$this->pdf->output();
-        //$this->pdf->ezStream();
         
         $this->createDocumentRecord();
     }
     
     
     function createDocumentRecord() {
-        $today = date("Ymd");
+        $today = date("Ymdhis");
         $document = new Document();
         $document->document_name = "Seminar Confirmation PDF " . $today . ".pdf";
         $document->parent_id = $this->lead->id;

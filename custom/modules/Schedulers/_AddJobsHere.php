@@ -46,6 +46,7 @@ $job_strings['107'] = 'updateBirthdayDaysLeft';
 $job_strings['108'] = 'updateSpouseBirthdayDaysLeft';
 $job_strings['109'] = 'updateDaysSinceInitialContact';
 $job_strings['110'] = 'createAnniversaryPDFandTask';
+$job_strings['111'] = 'createConfirmationPDFandTask';
 
 
 function updateSeminarDaysLeft() {
@@ -140,6 +141,14 @@ function updateDaysSinceInitialContact() {
 function createAnniversaryPDFandTask() {
     if (file_exists('custom/modules/Schedulers/createAnniversaryPDFandTask.php')) {
         require('custom/modules/Schedulers/createAnniversaryPDFandTask.php');
+    }
+    
+    return true;
+}
+
+function createConfirmationPDFandTask() {
+    if (file_exists('custom/modules/Schedulers/createConfirmationPDFandTask.php')) {
+        require('custom/modules/Schedulers/createConfirmationPDFandTask.php');
     }
     
     return true;
