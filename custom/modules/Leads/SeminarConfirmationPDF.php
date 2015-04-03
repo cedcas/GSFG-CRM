@@ -59,15 +59,19 @@ class SeminarConfirmationPDF {
 	// 1st Paragraph
         $eventdate = date('F j, Y', strtotime($this->lead->seminar_date_c));
         $eventday = date('l', strtotime($eventdate));
-        $text = "Thank you for your interest in attending ".$this->lead->seminar_title.".  We look forward to meeting you and your guest(s) on {$eventday}, {$eventdate} at:\n\n\n";
+        $text = "Thank you for your interest in attending ".$this->lead->seminar_title.".  We look forward to meeting you and your guest(s) on {$eventday}, {$eventdate} at:\n\n";
         $this->pdf->ezText($text, 11, array('justification'=>'left'));
         
 	// Venue Information
 	$this->pdf->ez['leftMargin'] = 30;
         $this->pdf->ez['leftMargin'] = -2;
-        $this->pdf->ezImage('custom/logos/' . $this->lead->venue_logo_filename, 0, 120, "none", "center");
-        $this->pdf->ez['leftMargin'] = 70;
-        $this->pdf->ezText("<b>".trim($this->lead->seminar_venue_name_c)."<b>", 13, array('justification'=>'center'));
+        if($this->lead->venue_logo_filename<>''||$this->lead->venue_logo_filename <> NULL){
+        	$this->pdf->ezImage('custom/logos/' . $this->lead->venue_logo_filename, 0, 120, "none", "center");
+        	}else{
+        	$this->pdf->ezImage('custom/logos/' . $this->lead->venue_logo_filename, 0, 120, "none", "center");
+	        $this->pdf->ez['leftMargin'] = 70;
+	        $this->pdf->ezText("<b>".trim($this->lead->seminar_venue_name_c)."<b>", 13, array('justification'=>'center'));
+	        }
         //$this->pdf->ezText("<b>Seminar Venue Here<b>", 13, array('justification'=>'center'));
         $this->pdf->ez['leftMargin'] = 30;
         $this->pdf->ezText($this->lead->seminar_address_c, 10, array('justification'=>'center'));
