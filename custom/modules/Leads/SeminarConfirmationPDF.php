@@ -8,6 +8,9 @@ Date: 20110429
 Modified based on Danielle's new requirements;
 Removed both header and footer so their company letterhead may be used;
 Modified the PDF filename to contain a timestamp;
+
+4/4/2015 - CPC
+Added 'lead->save()' to update all of the Lead's Seminar Information to the latest prior to creating the Confirmation PDF;
 *************************************/
 
 require_once('include/pdf/class.ezpdf.php');
@@ -32,6 +35,9 @@ class SeminarConfirmationPDF {
         $this->pdf = new Cezpdf(array(0,0,598,842));
         $this->lead = new Lead();
         $this->lead->retrieve($lead_id);
+        
+        //Added to update all of the Lead's Seminar Information to the latest;
+        $this->lead->save();
     }
     
     function generatePDF() {
