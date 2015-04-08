@@ -22,4 +22,6 @@ $mod_strings['LBL_VENUE_LOGO_IMG'] = 'Venu Logo IMG';
 $mod_strings['LBL_VENUE_LOGO_FILENAME'] = 'Venue Logo File Name';
 $mod_strings['LBL_LEAD_INITIAL_CONTACT'] = 'Initial Contact Date';
 $mod_strings['LBL_LEAD_DAYS_SINCE_INITIAL_CONTACT'] = 'Number of Days Since Initial Contact';
+$mod_strings['LBL_SPOUSEDAYSLEFTTOBIRTHDATE'] = 'Days Left Prior to Spouses Birthday';
+
 ?>

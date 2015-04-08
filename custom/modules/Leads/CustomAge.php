@@ -36,7 +36,7 @@ function getAgeSpouse($focus, $field, $value, $view)
 	
 	$id = $focus->id;
 	
-	$query = "SELECT FLOOR(DATEDIFF(NOW(), spouse_date_of_birth_c) / 365.25) AS age FROM leads_cstm WHERE id_c = '$id' ";
+	$query = "SELECT FLOOR(DATEDIFF(NOW(), spouse_birthday) / 365.25) AS age FROM leads WHERE id = '$id' ";
 	
 	$results = $focus->db->query($query, true);
 	$row = $focus->db->fetchByAssoc($results);

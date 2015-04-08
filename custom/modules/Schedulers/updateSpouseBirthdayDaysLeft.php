@@ -3,6 +3,9 @@
 /* 6/29/13 - CPC
  * BT# 49 - This file generates the number of days left before the lead's spouse's birthday;
  *
+ * 4/8/2015 - CPC
+ * BT# 56 - Updated with SQL Update and updated with the new field 'spouse_birthday';
+ *
  */
 
     
@@ -24,39 +27,45 @@
     $query_leads = "
         SELECT
             l.id AS id,
-            lc.spouse_date_of_birth_c AS bday
+            l.spouse_birthday AS bday
         FROM
-            leads l, leads_cstm lc
+            leads l
         WHERE
-            l.id=lc.id_c AND
-            (lc.spouse_date_of_birth_c <> '' OR lc.spouse_date_of_birth_c != NULL) AND
+            
+            (l.spouse_birthday <> '' OR l.spouse_birthday != NULL) AND
             l.deleted = 0
         ORDER BY
-            date_format(date(lc.spouse_date_of_birth_c), '%m-%d') ASC
+            date_format(date(l.spouse_birthday), '%m-%d') ASC
         ";
     
     $result_leads = $db->query($query_leads, true);
     
     while ($row = $db->fetchByAssoc($result_leads)) {
-        $lead = new Lead();
-        $lead->retrieve($row['id']);
-        $lead_id = $lead->id;
-        $bday = $lead->spouse_date_of_birth_c;     
-        $daysleft = round((strtotime(date("Y-m-d", strtotime($bday))) - strtotime(date("Y-m-d"))) / (60*60*24),0);
-        
-            
+    
+    	$lead_id = $row['id'];
+    	$spouse_bday = $row['bday'];
+    	   
+        $daysleft = round((strtotime(date("Y-m-d", strtotime($spouse_bday))) - strtotime(date("Y-m-d"))) / (60*60*24),0);
+
         while ($daysleft < 0) {
-            $bday = date("Y-m-d", strtotime('+1 year', strtotime($bday)));
-            $daysleft = round((strtotime(date("Y-m-d", strtotime($bday))) - strtotime(date("Y-m-d"))) / (60*60*24),0);
+            $spouse_bday = date("Y-m-d", strtotime('+1 year', strtotime($spouse_bday)));
+            $daysleft = round((strtotime(date("Y-m-d", strtotime($spouse_bday))) - strtotime(date("Y-m-d"))) / (60*60*24),0);
         }
 
-        //echo "<br><pre>";
-        //print_r($lead_id.": ".$bday.": ".$daysleft);
-        //echo "<br></pre>";
-            
-        $lead->lead_spouse_days_left_to_birthday= $daysleft;
-        $lead->save();
-        unset($lead);
+	$update_leads = "
+        UPDATE
+            leads l
+       	SET l.lead_spouse_days_left_to_birthday = '".$daysleft."'
+        WHERE
+            l.id = '".$lead_id."'
+        ";        
+        
+        $db->query($update_leads, true);
+        
+	//echo "<br><pre>";
+        //print_r($lead_id.": ".$bday.": ".$daysleft.": ".$update_leads);
+        //echo "<br></pre>";           
+         
     }
     //end while loop
     $GLOBALS['log']->info('----->Scheduler ends updateSpouseBirthdayDaysLeft()');

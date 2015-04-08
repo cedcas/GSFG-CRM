@@ -177,7 +177,7 @@ array (
           ),
           1 => 
           array (
-            'name' => 'spouse_date_of_birth_c',
+            'name' => 'spouse_birthday',
             'label' => 'LBL_SPOUSE_DATE_OF_BIRTH',
           ),
         ),
@@ -198,6 +198,21 @@ array (
         array (
           0 => 
           array (
+            'name' => 'lead_days_left_to_birthday',
+            'label' => 'LBL_DAYSLEFTTOBIRTHDATE',
+            'type' => 'readonly',
+          ),
+	  1 => 
+          array (
+            'name' => 'lead_spouse_days_left_to_birthday',
+            'label' => 'LBL_SPOUSEDAYSLEFTTOBIRTHDATE',
+            'type' => 'readonly',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
             'name' => 'drivers_license_number_c',
             'label' => 'LBL_DRIVERS_LICENSE_NUMBER',
           ),
@@ -207,19 +222,14 @@ array (
             'label' => 'LBL_SPOUSE_DRIVERS_LICENSE_NUMBE',
           ),
         ),
-          4 => 
+        5 => 
         array (
           0 => 
           array (
             'name' => 'wedding_anniv',
             'label' => 'LBL_LEAD_WEDDING_ANNIV',
           ),
-		    1 => 
-          array (
-            'name' => 'lead_days_left_to_birthday',
-            'label' => 'LBL_DAYSLEFTTOBIRTHDATE',
-            'type' => 'readonly',
-          ),
+
         ),
       ),
       'lbl_editview_panel1' => 

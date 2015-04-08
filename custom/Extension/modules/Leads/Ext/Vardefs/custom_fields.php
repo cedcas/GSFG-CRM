@@ -350,4 +350,15 @@ $dictionary['Lead']['fields']['accounts_total_premium_average'] = array(
 );
 
 /** START Custom fields used for KINAMU Reports **/
+
+// 4/2/2015
+// Replacing the old buggy "spouse_date_of_birth_c" field
+
+$dictionary["Lead"]["fields"]["spouse_birthday"] = array (
+    'name' => 'spouse_birthday',
+    'vname' => 'LBL_SPOUSE_BIRTHDAY',
+    'type' => 'date',
+    'reportable' => true,
+    'importable' => true,
+);
 ?>
