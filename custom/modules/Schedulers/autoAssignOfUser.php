@@ -5,6 +5,11 @@ $db = DBManagerFactory::getInstance();
 
 /* cron job - update leads.assigned_user_id from assigned seminardetails (host)
  * @KMJ 2011-11-13
+ *
+ * CPC 5/17/2015
+ * Added 'deleted=0' in the SELECT's WHERE CLAUSE in order to just grab the undeleted user;  The issue in this was when
+ * AP was added by accident, then 5 seconds later was deleted and replaced by MP.  Since AP's user id comes up prior to MP's, 
+ * he got assigned to the leads.  Addition the 'deleted=0' in the WHERE CLAUSE will prevent this in the future.
  */
 
 class LeadUpdater {
@@ -53,7 +58,7 @@ class LeadUpdater {
 		    LEFT JOIN gsf_seminardetails b on a.gsf_seminardetails_id = b.id
 		    LEFT JOIN gsf_seminaretails_leads_c c on b.id = c.gsf_semina6647details_ida
 		    LEFT JOIN users on users.id = a.user_id
-		    WHERE c.gsf_semina5325dsleads_idb = '$leads->id'
+		    WHERE c.gsf_semina5325dsleads_idb = '$leads->id' AND a.deleted='0'
 		    ORDER BY c.date_modified desc LIMIT 1
 		) WHERE leads.id = '$leads->id'
 	    ";
