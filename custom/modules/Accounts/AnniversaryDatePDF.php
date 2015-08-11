@@ -27,6 +27,9 @@ Date: 20110808
  * - Put back Terri's title
  * - Made the Media Logo much lower
  * - Added TIME in the Anniversary PDF filename, i.e. "Anniversarry PDF 20150309124810.pdf", from just "Anniversarry PDF 20150309.pdf"
+ *
+ * 8/10/2015 CPC
+ * Commented out the media logo at the bottom of the PDF @ line 102, as requested by Analhi & Rachel;
  */
 
 require_once('include/pdf/class.ezpdf.php');
@@ -96,7 +99,7 @@ class AnniversaryDatePDF {
         $this->pdf->ezText($signature, 11, array('justification'=>'left', 'leading'=>'5'));
 
 	// Media logos
-        $this->pdf->ezImage('custom/logos/media_logos.jpg', 0, 500, "none", "left");
+        // $this->pdf->ezImage('custom/logos/media_logos.jpg', 0, 500, "none", "left");
 
         
         $this->createDocumentRecord();
