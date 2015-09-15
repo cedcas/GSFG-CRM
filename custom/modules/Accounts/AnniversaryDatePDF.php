@@ -27,9 +27,15 @@ Date: 20110808
  * - Put back Terri's title
  * - Made the Media Logo much lower
  * - Added TIME in the Anniversary PDF filename, i.e. "Anniversarry PDF 20150309124810.pdf", from just "Anniversarry PDF 20150309.pdf"
+ * - Fixed the weird character that came from copying directly from Word document;
  *
  * 8/10/2015 CPC
- * Commented out the media logo at the bottom of the PDF @ line 102, as requested by Analhi & Rachel;
+ * Commented out the media logo at the bottom of the PDF @ line 104, as requested by Analhi & Rachel;
+ *
+ * 9/8/2015 CPC
+ * Requested by Analhi & Amy:
+ * 	Uncommented out the media logo at the bottom of the PDF;
+ *	Replaced Terri's name & signature with Jake Kuper's;
  */
 
 require_once('include/pdf/class.ezpdf.php');
@@ -91,15 +97,16 @@ class AnniversaryDatePDF {
         $text = "\nSincerely,\n\n";
         $this->pdf->ezText($text, 11, array('justification'=>'left'));
 	
-	// Terri's signature
-	$this->pdf->ezImage('custom/logos/terriweston_sig.png', 0, 140, "none", "left");
+	// Jake's signature
+	$this->pdf->ezImage('custom/logos/jakekuper_sig.jpg', 0, 140, "none", "left");
 	
 	// Extra spaces
-        $signature = "Client Relations Coordinator\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	$signature = "Jake Kuper\n\n" .
+        	     "Client Relations Coordinator\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         $this->pdf->ezText($signature, 11, array('justification'=>'left', 'leading'=>'5'));
 
 	// Media logos
-        // $this->pdf->ezImage('custom/logos/media_logos.jpg', 0, 500, "none", "left");
+        $this->pdf->ezImage('custom/logos/media_logos.jpg', 0, 500, "none", "left");
 
         
         $this->createDocumentRecord();
@@ -143,5 +150,4 @@ class AnniversaryDatePDF {
     }
     
 }
-
 ?>
