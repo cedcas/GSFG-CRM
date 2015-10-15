@@ -4,6 +4,9 @@
  * @author Cedric P. Castillo
  * 4/2/2015
  *
+ * 10/14/2015
+ * Changed the task assignment from Marilyn Triplett to Analhi Nunez;
+ * Requested by Analhi via email;
  */
 
 
@@ -22,8 +25,8 @@ class confirmationTask extends SugarBean {
             $task->parent_type = "Leads";
             $task->parent_id = $focusObjectId;
             
-            // Assign task to Trudy Poor
-            $task->assigned_user_id = '737dd1ef-eac4-be72-5f6e-54e3bf6e0080';
+            // Assign task to Analhi Nunez
+            $task->assigned_user_id = 'f243b985-234b-ccaf-ebbb-556f3fcf45a3';
             
             $task->date_start = gmdate($GLOBALS['timedate']->get_db_date_time_format());
             $date_today_stamp = strtotime($task->date_start);
