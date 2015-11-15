@@ -36,6 +36,10 @@ Date: 20110808
  * Requested by Analhi & Amy:
  * 	Uncommented out the media logo at the bottom of the PDF;
  *	Replaced Terri's name & signature with Jake Kuper's;
+ *
+ * 11/14/2015 CPC
+ * Requested by Analhi
+ * 	Changed Jake's signature & name to Analhi's;
  */
 
 require_once('include/pdf/class.ezpdf.php');
@@ -97,12 +101,13 @@ class AnniversaryDatePDF {
         $text = "\nSincerely,\n\n";
         $this->pdf->ezText($text, 11, array('justification'=>'left'));
 	
-	// Jake's signature
-	$this->pdf->ezImage('custom/logos/jakekuper_sig.jpg', 0, 140, "none", "left");
+	// Analhi's signature
+	$this->pdf->ezImage('custom/logos/analhi_signature.jpg', 0, 140, "none", "left");
 	
 	// Extra spaces
-	$signature = "Jake Kuper\n\n" .
-        	     "Client Relations Coordinator\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	$signature = "Analhi Nuñez\n\n" .
+        	     "Assistant Marketing Coordinator\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        $signature = utf8_decode($signature);
         $this->pdf->ezText($signature, 11, array('justification'=>'left', 'leading'=>'5'));
 
 	// Media logos
