@@ -11,6 +11,9 @@ Modified the PDF filename to contain a timestamp;
 
 4/4/2015 - CPC
 Added 'lead->save()' to update all of the Lead's Seminar Information to the latest prior to creating the Confirmation PDF;
+
+2/5/2016 - CPC
+Requested by Kim to change Danielle's signature & name to Analhi's;
 *************************************/
 
 require_once('include/pdf/class.ezpdf.php');
@@ -97,11 +100,11 @@ class SeminarConfirmationPDF {
         $text = "\nSee you soon,\n\n";
         $this->pdf->ezText($text, 11, array('justification'=>'left'));
 
-	// Signature
-	$this->pdf->ezImage('custom/logos/daniellecesar_sig.png', 0, 140, "none", "left");
-        $name = "Danielle Cesar\n\n";
+	// Analhi's Signature
+	$this->pdf->ezImage('custom/logos/analhi_signature.jpg', 0, 140, "none", "left");
+        $name = "Analhi Nuñez\n\n";
         $this->pdf->ezText($name, 11, array('justification'=>'left', 'leading'=>'5'));
-        $title = "Marketing Coordinator\n\n\n\n\n\n\n\n\n\n\n";
+        $title = "Assistant Marketing Coordinator\n\n\n\n\n\n\n\n\n\n\n";
         $this->pdf->ezText($title, 11, array('justification'=>'left', 'leading'=>'5'));
 
         // Media logos
