@@ -103,6 +103,7 @@ class SeminarConfirmationPDF {
 	// Analhi's Signature
 	$this->pdf->ezImage('custom/logos/analhi_signature.jpg', 0, 140, "none", "left");
         $name = "Analhi Nuñez\n\n";
+        $name = utf8_decode($name);
         $this->pdf->ezText($name, 11, array('justification'=>'left', 'leading'=>'5'));
         $title = "Assistant Marketing Coordinator\n\n\n\n\n\n\n\n\n\n\n";
         $this->pdf->ezText($title, 11, array('justification'=>'left', 'leading'=>'5'));
