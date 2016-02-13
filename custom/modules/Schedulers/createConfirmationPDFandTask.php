@@ -38,7 +38,7 @@ Date: 4/2/2015
 		            STR_TO_DATE(lc.seminar_date_c, '%m/%d/%Y') > CURDATE() AND
 		            STR_TO_DATE(lc.seminar_date_c, '%m/%d/%Y') <> '0000-00-00' AND
 		            (lc.seminar_date_c IS NOT NULL OR lc.seminar_date_c <> '') AND 
-		            DATEDIFF(STR_TO_DATE(lc.seminar_date_c, '%m/%d/%Y'), CURDATE()) IN ('5') AND 
+		            DATEDIFF(STR_TO_DATE(lc.seminar_date_c, '%m/%d/%Y'), CURDATE()) IN ('6') AND 
 		            l.lead_source='Seminar'
         ";
     
